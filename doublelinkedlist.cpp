@@ -95,3 +95,106 @@ private:
         int rollno;
         cin >> rollno;
 
+        Node *current =START;
+
+        // step 1: traverse the list to find the node
+        while (current != NULL && current->noMhs != rollno)
+            current = current->next;
+
+        if (current == NULL)
+        {
+            cout << "record not found" << endl;
+            return;
+        }
+
+        //step 2: if node is at the beginning
+        if (current == START)
+        {
+            START = current->next; // step 2a: START = START.next
+            if (START  != NULL)
+                START->prev = NULL; //step 2b START.prev = NULL
+        }
+        else
+        {
+            //step 3: link previous node to next of current
+            current->prev->next = current->next;
+
+            //step 4: if current is not the last node 
+            if (current->next != NULL)
+                current->next->prev = current->prev;
+        }
+
+        //step 5: delete the node 
+        delete current;
+        cout << "record with roll number " << rollno << "deleted" << endl; 
+    }
+
+    void traverse()
+    {
+        if (START == NULL)
+        {
+            cout << "\nList is empty" << endl;
+            return;
+        }
+        // step 1:  mark first node as currentnode
+        Node *currentnode = START;
+        //step 2: repeat untill currentnode == NULL
+        cout << "\nRecords in ascending order of roll number are:\n";
+        int i = 0;
+        while (currentnode != NULL)
+        {
+            cout << i + 1 << ". " << currentnode->noMhs << " " << endl;
+            //step 3: move to next node
+            currentnode = currentnode->next;
+            i++;
+        }
+    }
+
+    void revtraverse()
+    {
+        if (START == NULL)
+        {
+            cout << "\nList is empty" << endl;
+            return;
+        }
+
+        //step 1: move to last node
+        Node *currentnode = START;
+        int i = 0;
+        while (currentnode->next != NULL )
+        {
+            currentnode = currentnode->next;
+            i++;
+        }
+
+        //step 2: traverse backward
+        cout << "\nRecords in descending order of roll number are :\n";
+        while (currentnode != NULL)
+        {
+            cout << i + i << ". " << currentnode->noMhs << " " << endl;
+
+            //step 3: move to previous node
+            currentnode = currentnode->prev;
+            i--;
+        }
+    }
+
+    void sereachData()
+    {
+        if (START == NULL)
+        {
+            cout << "\nlist  is empty" << endl;
+            return;
+        }
+
+        int rollno;
+        cout << "\nEnter the roll number to search: ";
+        cin >> rollno;
+
+        Node *current = START;
+
+        //step 1: traverse to find matching roll number
+        while (current != NULL && current->noMhs != rollno)
+            current = current->next;
+        
+       
