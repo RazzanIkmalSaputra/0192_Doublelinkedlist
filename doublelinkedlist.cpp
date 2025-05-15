@@ -167,3 +167,32 @@ private:
             i++;
         }
 
+        //step 2: traverse backward
+        cout << "\nRecords in descending order of roll number are :\n";
+        while (currentnode != NULL)
+        {
+            cout << i + i << ". " << currentnode->noMhs << " " << endl;
+
+            //step 3: move to previous node
+            currentnode = currentnode->prev;
+            i--;
+        }
+    }
+
+    void sereachData()
+    {
+        if (START == NULL)
+        {
+            cout << "\nlist  is empty" << endl;
+            return;
+        }
+
+        int rollno;
+        cout << "\nEnter the roll number to search: ";
+        cin >> rollno;
+
+        Node *current = START;
+
+        //step 1: traverse to find matching roll number
+        while (current != NULL && current->noMhs != rollno)
+            current = current->next;
