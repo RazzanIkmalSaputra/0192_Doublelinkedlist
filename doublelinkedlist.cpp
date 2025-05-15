@@ -196,3 +196,15 @@ private:
         //step 1: traverse to find matching roll number
         while (current != NULL && current->noMhs != rollno)
             current = current->next;
+//step 2: output result
+if (current == NULL)
+{
+    cout << "record not found\n";
+}
+else
+{
+    cout << "record  found\n";
+    cout << "roll number: " << current->noMhs << endl;
+}   
+}
+};
