@@ -173,5 +173,10 @@ private:
         {
             cout << i + i << ". " << currentnode->noMhs << " " << endl;
 
-   
+            //step 3: move to previous node
+            currentnode = currentnode->prev;
+            i--;
+        }
+    }
+
   
